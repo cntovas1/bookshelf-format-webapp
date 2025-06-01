@@ -28,6 +28,9 @@ last_legality_report = None
 def process_files():
     global nodes, placements, rows, nets, nets_file_path
     try:
+        if 'files' not in request.files:
+            return jsonify({"message": "No files uploaded (missing 'files' field)"}), 400
+         
         files = request.files.getlist('files')
         nodes = {}
         placements = {}
