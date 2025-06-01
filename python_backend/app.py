@@ -24,6 +24,10 @@ nets = []
 nets_file_path = None
 last_legality_report = None
 
+@app.route('/', methods=['GET'])
+def home():
+    return "Flask backend is running.", 200
+
 @app.route('/process', methods=['POST'])
 def process_files():
     global nodes, placements, rows, nets, nets_file_path
