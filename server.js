@@ -1,9 +1,12 @@
 // server.js
 const express = require('express');
+const cors = require('cors');
 const multer = require('multer');
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
+
+app.use(cors());
 
 const app = express();
 app.use(express.static('public'));
