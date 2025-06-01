@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSRC Bookshelf Format Display & Info</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>GSRC Bookshelf Format Display & Info</h1>
+  <form id="uploadForm">
+    <input type="file" id="fileInput" webkitdirectory directory multiple />
+    <button type="submit">Upload</button>
+  </form>
+  <div id="result"></div> <!-- This is where the image will be displayed -->
+
+  <!-- Original Design Section -->
+  <div id="original-design" style="display: none;">
+    <img id="original-layout-image" src=""  style="max-width: 100%;">
+    <button id="download-layout-btn" style="display: none;">Download Updated Layout</button>
+    <label for="features">Select a feature:</label>
+    <select id="features" onchange="onFeatureSelect()">
+        <option value="">Options...</option>
+        <option value="total_wire_length">Calculate Total Wire Length</option>
+        <option value="specific_net_length">Calculate Wire Length for Specific Net</option>
+        <option value="node_coordinates">Get Node Coordinates</option>
+        <option value="node_size_statistics">Node Size Statistics</option>
+        <option value="largest_smallest_nets_hpwl">Largest and Smallest Nets by HPWL</option>
+        <option value="sorted_nets">Display Nets (Largest to Smallest)</option>
+        <option value="global_placement">Global Placement</option>
+        <option value="legalization">Legalization</option>
+        <option value="detailed_placement">Detailed Placement</option>
+        <option value="legality_check">Legality Check</option>
+        <option value="modify_node_placement">Modify Node Placement</option>
+    </select>
+    <div id="feature-output"></div>
+  
+
+    <!-- Input Field for Net ID (Initially Hidden) -->
+    <div id="net-search" style="display: none;">
+      <label for="net-id">Enter Net ID:</label>
+      <input type="text" id="net-id" placeholder="Net ID">
+      <button onclick="calculateSpecificNetLength()">Calculate</button>
+    </div>
+
+    <!-- Input Field for Node ID (Initially Hidden) -->
+    <div id="node-search" style="display: none;">
+      <label for="node-id">Enter Node ID:</label>
+      <input type="text" id="node-id" placeholder="Node ID">
+      <button onclick="getNodeCoordinates()">Get Coordinates</button>
+    </div>
+
+    <!-- Dropdown for Placement Algorithms -->
+    <div id="placement-options" style="display: none;">
+      <label for="placement-algorithms">Select Placement Algorithm:</label>
+      <select id="placement-algorithms" onchange="runPlacementAlgorithm()">
+        <option value="">Options...</option>
+        <option value="random">Random Placement</option>
+      </select>
+    </div>
+
+    <!-- Legalized Design Section -->
+    <div id="legalized-design" style="display: none;">
+      <h3>Legalized Design Visualization</h3>
+      <img id="legalized-layout-image" src="" alt="Legalized Design" style="max-width: 100%;">
+    </div>
+
+    <div id="detailed_placement" style="display: none;">
+      <h3>Detailed Placement</h3>
+      <img id="detailed-placement-image" src="" alt="Detailed Placement" style="max-width: 100%;">
+    </div>
+    
+    <!-- Input Field for Modifying Node Coordinates -->
+<div id="modify-node" style="display: none;">
+  <label for="modify-node-id">Enter Node ID:</label>
+  <input type="text" id="modify-node-id" placeholder="Node ID">
+  <label for="modify-x">Enter New X Coordinate:</label>
+  <input type="text" id="modify-x" placeholder="X Coordinate">
+  <label for="modify-y">Enter New Y Coordinate:</label>
+  <input type="text" id="modify-y" placeholder="Y Coordinate">
+  <button onclick="modifyNodePlacement()">Modify Node</button>
+</div>
+
+  
+</div>
+
+  <!-- Randomized Design Section (Visible After Random Placement) -->
+  <div id="randomized-design" style="display: none;">
+    <h3>Randomized Design Visualization</h3>
+    <img id="random-layout-image" src="" alt="Randomized Design Visualization" style="max-width: 100%;">
+    <label for="random-features" >Options for Random Placement:</label>
+    <select id="random-features" onchange="onRandomFeatureSelect()">
+      <option value="">Select an Option...</option>
+      <option value="random_total_wire_length">Calculate Total Wire Length</option>
+      <option value="random_specific_net_length">Calculate Wire Length for Specific Net</option>
+      <option value="random_largest_smallest_nets_hpwl">Largest and Smallest Nets by HPWL</option>
+      <option value="random_sorted_nets">Sorted Nets by Wirelength</option>
+      <option value="random_node_coordinates">Get Node Coordinates</option>
+      <option value="random_legality_check">Legality Check</option>
+      <option value="save_image">Save Image</option>
+      <option value="random_modify_node_placement">Modify Node Placement</option> <!-- New Option -->
+    </select>
+    <div id="random-feature-output"></div>
+
+        <!-- Input Field for Random Design Specific Net Length Calculation -->
+    <div id="random-net-search" style="display: none;">
+      <label for="random-net-id">Enter Net ID:</label>
+      <input type="text" id="random-net-id" placeholder="Net ID">
+      <button onclick="calculateRandomSpecificNetLength()">Calculate</button>
+    </div>
+
+    <!-- Input Field for Random Design Node Coordinates -->
+    <div id="random-node-search" style="display: none;">
+      <label for="random-node-id">Enter Node ID:</label>
+      <input type="text" id="random-node-id" placeholder="Node ID">
+      <button onclick="calculateRandomNodeCoordinates()">Get Coordinates</button>
+    </div>
+
+    <div id="random-modify-node" style="display: none;">
+      <h4>Modify Node Placement</h4>
+      <label for="random-modify-node-id">Node ID:</label>
+      <input type="text" id="random-modify-node-id" placeholder="Enter Node ID">
+      <label for="random-modify-x">X Coordinate:</label>
+      <input type="number" id="random-modify-x" placeholder="Enter X Coordinate">
+      <label for="random-modify-y">Y Coordinate:</label>
+      <input type="number" id="random-modify-y" placeholder="Enter Y Coordinate">
+      <button onclick="modifyRandomNodePlacement()">Modify Node</button>
+    </div>
+    
+
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

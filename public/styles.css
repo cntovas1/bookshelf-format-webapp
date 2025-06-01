@@ -1,0 +1,148 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Body Styling */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Page Title */
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #222;
+  }
+  
+  /* Forms */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input[type="file"],
+  input[type="text"] {
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Sections */
+  #original-design,
+  #randomized-design {
+    width: 100%;
+    max-width: 800px; /* Ensures both sections have a consistent maximum width */
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #original-design h3,
+  #randomized-design h3 {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #007bff;
+  }
+  
+  /* Images */
+  img {
+    display: block;
+    margin: 15px auto;
+    max-width: 100%; /* Ensures image scales with its container */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #original-design img,
+  #randomized-design img {
+    width: 100%; /* Make images occupy full width of their container */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* Dropdowns */
+  select {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  /* Labels */
+  label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  /* Outputs */
+  #feature-output,
+  #random-feature-output {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    button {
+      font-size: 0.9rem;
+    }
+  
+    #original-design,
+    #randomized-design {
+      padding: 10px;
+    }
+  }
+  

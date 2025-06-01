@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: flask-backend
+    env: python
+    rootDir: python_backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    autoDeploy: true
+
+  - type: web
+    name: node-upload-server
+    env: node
+    rootDir: .
+    buildCommand: npm install
+    startCommand: node server.js
+    autoDeploy: true
