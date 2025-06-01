@@ -1,4 +1,5 @@
 # python_backend/app.py
+import os
 from flask import Flask, request, send_file, jsonify
 import matplotlib
 from matplotlib.patches import Rectangle
