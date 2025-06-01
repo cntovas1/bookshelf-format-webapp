@@ -17,7 +17,7 @@ app.post('/upload', upload.array('files'), async (req, res) => {
   });
 
   try {
-    const response = await axios.post('http://localhost:5001/process', formData, {
+    const response = await axios.post('https://flask-backend-2pfq.onrender.com/process', formData, {
       headers: formData.getHeaders(),
       responseType: 'arraybuffer', // Image data
     });

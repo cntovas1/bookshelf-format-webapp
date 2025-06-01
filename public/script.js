@@ -12,7 +12,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
   }
 
   try {
-    const response = await fetch('http://localhost:5000/upload', {
+    const response = await fetch('https://flask-backend-2pfq.onrender.com/upload', {
       method: 'POST',
       body: formData,
     });
@@ -91,7 +91,7 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none"; 
-    fetch("http://localhost:5001/calculate_wire_length")
+    fetch("https://node-upload-server.onrender.com/calculate_wire_length")
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -125,7 +125,7 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none";
-    fetch("http://localhost:5001/node_size_statistics")
+    fetch("https://node-upload-server.onrender.com/node_size_statistics")
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -162,7 +162,7 @@ function onFeatureSelect() {
         outputDiv.innerHTML = "Error fetching node size statistics. Check server logs for details.";
       });
   } else if (selectedFeature === "largest_smallest_nets_hpwl") {
-    fetch("http://localhost:5001/largest_smallest_nets_hpwl")
+    fetch("https://node-upload-server.onrender.com/largest_smallest_nets_hpwl")
       .then(response => response.json())
       .then(data => {
         if (data.largest_net && data.smallest_net) {
@@ -195,7 +195,7 @@ function onFeatureSelect() {
     outputDiv.innerHTML = ""; 
     document.getElementById("placement-options").style.display = "block";
   } else if (selectedFeature === "legalization") {
-    fetch("http://localhost:5001/legalize_placement", {
+    fetch("https://node-upload-server.onrender.com/legalize_placement", {
       method: "POST",
     })
       .then(response => response.json())
@@ -225,7 +225,7 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none"; 
-    fetch("http://localhost:5001/sorted_nets")
+    fetch("https://node-upload-server.onrender.com/sorted_nets")
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
@@ -262,7 +262,7 @@ function onFeatureSelect() {
       });
   
     } else if (selectedFeature === "detailed_placement") {
-  fetch("http://localhost:5001/detailed_placement", {
+  fetch("https://node-upload-server.onrender.com/detailed_placement", {
     method: "POST",
   })
     .then(response => response.json())
@@ -283,7 +283,7 @@ function onFeatureSelect() {
       outputDiv.innerHTML = "Error performing detailed placement.";
     }); 
   } else if (selectedFeature === "legality_check") {
-  fetch("http://localhost:5001/legality_check")
+  fetch("https://node-upload-server.onrender.com/legality_check")
     .then(response => response.json())
     .then(data => {
       const summary = data.summary;
@@ -314,7 +314,7 @@ function onFeatureSelect() {
           return;
         }
   
-        fetch("http://localhost:5001/modify_node_coordinates", {
+        fetch("https://node-upload-server.onrender.com/modify_node_coordinates", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -386,7 +386,7 @@ function runPlacementAlgorithm() {
   document.getElementById("random-feature-output").innerHTML = ""; 
 
   if (selectedAlgorithm === "random") {
-    fetch("http://localhost:5001/random_placement", { method: "POST" })
+    fetch("https://node-upload-server.onrender.com/random_placement", { method: "POST" })
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -421,7 +421,7 @@ function calculateSpecificNetLength() {
     return;
   }
 
-  fetch(`http://localhost:5001/calculate_net_length/${netId}`)
+  fetch(`https://node-upload-server.onrender.com/calculate_net_length/${netId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -452,7 +452,7 @@ function getNodeCoordinates() {
     return;
   }
 
-  fetch(`http://localhost:5001/get_node_coordinates/${nodeId}`)
+  fetch(`https://node-upload-server.onrender.com/get_node_coordinates/${nodeId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -477,7 +477,7 @@ function getNodeCoordinates() {
 
 
 function loadRandomVisualization() {
-  fetch("http://localhost:5001/random_visualize_layout")
+  fetch("https://node-upload-server.onrender.com/random_visualize_layout")
     .then(response => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -504,7 +504,7 @@ function onRandomFeatureSelect() {
   outputDiv.innerHTML = "";
 
   if (selectedFeature === "random_total_wire_length") {
-    fetch("http://localhost:5001/random_calculate_wire_length")
+    fetch("https://node-upload-server.onrender.com/random_calculate_wire_length")
       .then(response => response.json())
       .then(data => outputDiv.innerHTML = "Total Wire Length: " + data.total_length)
       .catch(error => console.error("Error:", error));
@@ -513,7 +513,7 @@ function onRandomFeatureSelect() {
   } else if (selectedFeature === "random_node_coordinates") {
     document.getElementById("random-node-search").style.display = "block";
   } else if (selectedFeature === "random_largest_smallest_nets_hpwl") {
-    fetch("http://localhost:5001/random_largest_smallest_nets_hpwl")
+    fetch("https://node-upload-server.onrender.com/random_largest_smallest_nets_hpwl")
       .then(response => response.json())
       .then(data => {
         if (data.largest_net && data.smallest_net) {
@@ -539,7 +539,7 @@ function onRandomFeatureSelect() {
   } else if (selectedFeature === "save_image") {
     saveRandomImage(); // Call the function to save the image
   } else if (selectedFeature === "random_legality_check") {
-  fetch("http://localhost:5001/random_legality_check")
+  fetch("https://node-upload-server.onrender.com/random_legality_check")
     .then(response => response.json())
     .then(data => {
       const summary = data.summary;
@@ -559,7 +559,7 @@ function onRandomFeatureSelect() {
 } else if (selectedFeature === "random_modify_node_placement") {
     document.getElementById("random-modify-node").style.display = "block";
   } else if (selectedFeature === "random_sorted_nets") {
-    fetch("http://localhost:5001/random_sorted_nets")
+    fetch("https://node-upload-server.onrender.com/random_sorted_nets")
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
@@ -608,7 +608,7 @@ function modifyRandomNodePlacement() {
     return;
   }
 
-  fetch("http://localhost:5001/random_modify_node_coordinates", {
+  fetch("https://node-upload-server.onrender.com/random_modify_node_coordinates", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -644,7 +644,7 @@ function calculateRandomSpecificNetLength() {
     return;
   }
 
-  fetch(`http://localhost:5001/random_calculate_net_length/${netId}`)
+  fetch(`https://node-upload-server.onrender.com/random_calculate_net_length/${netId}`)
     .then(response => response.json())
     .then(data => {
       if (data.wire_length !== undefined) {
@@ -672,7 +672,7 @@ function calculateRandomNodeCoordinates() {
     return;
   }
 
-  fetch(`http://localhost:5001/random_node_coordinates?node_id=${nodeId}`)
+  fetch(`https://node-upload-server.onrender.com/random_node_coordinates?node_id=${nodeId}`)
     .then(response => response.json())
     .then(data => {
       if (data.x !== undefined && data.y !== undefined) {
@@ -691,7 +691,7 @@ function calculateRandomNodeCoordinates() {
 
 
 function saveRandomImage() {
-  fetch("http://localhost:5001/random_visualize_layout")
+  fetch("https://node-upload-server.onrender.com/random_visualize_layout")
     .then(response => response.blob()) 
     .then(blob => {
       const url = URL.createObjectURL(blob); 
