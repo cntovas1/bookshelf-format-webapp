@@ -6,9 +6,8 @@ const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
 
-app.use(cors());
-
 const app = express();
+app.use(cors());
 app.use(express.static('public'));
 
 const upload = multer({ dest: 'uploads/' });
