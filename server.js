@@ -8,9 +8,9 @@ const FormData = require('form-data');
 
 const app = express();
 app.use(cors({
-  origin: 'https://cntovasi.github.io'
+  origin: 'https://cntovas1.github.io'
 }));
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 const upload = multer({ dest: 'uploads/' });
 
